@@ -1,0 +1,41 @@
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+group = 'jp.mts'
+version = '0.0.1'
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile) each { it.groovyOptions.encoding = defaultEncoding }
+
+configurations { testMock }
+
+dependencies {
+
+	compile gradleApi()
+	compile "org.codehaus.groovy:groovy-all:2.3.8"
+	compile 'org.yaml:snakeyaml:1.14'
+	compile 'org.apache.commons:commons-io:1.3.2'
+
+	testMock 'org.jmockit:jmockit:1.13'
+	testCompile "org.spockframework:spock-core:1.0-groovy-2.3-SNAPSHOT"
+	testCompile "junit:junit:4.11"
+	testCompile "org.easytesting:fest-assert-core:2.0M10"
+
+}
+
+sourceSets.test.compileClasspath = configurations.testMock + sourceSets.test.compileClasspath
+sourceSets.test.runtimeClasspath = configurations.testMock + sourceSets.test.runtimeClasspath
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.12'
+}
+
