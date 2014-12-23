@@ -19,8 +19,8 @@ dependencies {
 	compile 'org.yaml:snakeyaml:1.14'
 	compile 'org.apache.commons:commons-io:1.3.2'
 
-	testMock 'org.jmockit:jmockit:1.13'
-	testCompile "org.spockframework:spock-core:1.0-groovy-2.3-SNAPSHOT"
+	testMock "org.jmockit:jmockit:1.14"    //実行時にモックを有効にするために先に読み込む必要があるため別で管理
+	testCompile "org.jmockit:jmockit:1.14" //eclipse用に設定
 	testCompile "junit:junit:4.11"
 	testCompile "org.easytesting:fest-assert-core:2.0M10"
 
