@@ -1,4 +1,4 @@
 environment: develop
 app_base_url: http\://192.168.77.11
-api_base_url: http\://192.168.77.11:8081
+api_base_url: http\://192.168.77.11/api
 
